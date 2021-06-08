@@ -34,6 +34,7 @@ export class EditTodoComponent implements OnInit {
     const todoId = this.todo.id;
     this.todoService.saveTodo(newtodo, todoId);
     this.newTodoForm.reset();
+    this.router.navigate(['']);
 }
 
 }
