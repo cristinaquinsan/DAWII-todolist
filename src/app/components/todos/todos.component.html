@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="space"></div>
+    <div class="todos">
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Todos">
+                <table>
+                    <tr>
+                        <th>Todo</th>
+                        <th>Priority</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr class="todo" *ngFor="let todo of todos | async">
+                        <td>{{todo.content}}</td>
+                        <td>{{todo.priority}}</td>
+                        <td>{{todo.date}}</td>
+                        <td>{{todo.status}}</td>
+                        <td role="group">
+                            <button mat-raised-button class="buttonpadding" color="accent">Edit</button>
+                            <button mat-raised-button class="buttonpadding" color="accent">See</button>
+                            <button mat-raised-button color="warn" (click)="deleteToDo(todo.id)">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </mat-tab>
+            <mat-tab label="Completed todos">
+                <table>
+                    <tr>
+                        <th>Todo</th>
+                        <th>Priority</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr class="todo" *ngFor="let todo of todos | filterCompleted | async">
+                        <td>{{todo.content}}</td>
+                    </tr>
+                </table>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <div class="space"></div>
+</div>
