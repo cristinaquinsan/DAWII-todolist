@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router, NavigationExtras } from '@angular/router'
 import { todoModel } from '../../models/todoModel'
 import { TodosService } from '../todos.service';
 
@@ -17,6 +17,12 @@ export class TodosComponent {
   inputStatus: string;
   filteredCompleted: string[]
 
+  navigationExtras: NavigationExtras = {
+    state: {
+      value: null
+    }
+  };
+
   constructor(private router: Router, private todosService: TodosService) { }
 
   ngOnInit(): void { }
@@ -27,6 +33,11 @@ export class TodosComponent {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  goToEditToDo(todo: any): void {
+    this.navigationExtras.state.value = todo;
+    this.router.navigate(['edittodo'], this.navigationExtras);
   }
 
 }

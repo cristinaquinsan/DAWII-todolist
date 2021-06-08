@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { todoModel } from 'src/app/models/todoModel';
 import { TodosService } from '../todos.service';
 
@@ -10,7 +11,9 @@ import { TodosService } from '../todos.service';
 })
 export class EditTodoComponent implements OnInit {
 
-  constructor(private todoService: TodosService, private fb: FormBuilder) { 
+  constructor(private router: Router,private todoService: TodosService, private fb: FormBuilder) { 
+    const navigation = this.router.getCurrentNavigation();
+    this.todo = navigation?.extras?.state?.value;
     this.newTodoForm = this.fb.group({
       content: '', 
       priority: '',
@@ -23,11 +26,13 @@ export class EditTodoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.newTodoForm.patchValue(this.todo);
   }
 
   saveTodo(): void {
     const newtodo = this.newTodoForm.value;
-    this.todoService.saveTodo(newtodo, null);
+    const todoId = this.todo.id;
+    this.todoService.saveTodo(newtodo, todoId);
     this.newTodoForm.reset();
 }
 
