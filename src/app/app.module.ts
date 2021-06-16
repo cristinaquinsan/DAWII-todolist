@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { TodosComponent } from './components/todos/todos.component';
 import { NewTodoComponent } from './components/new-todo/new-todo.component';
-import { SeeTodoComponent } from './components/see-todo/see-todo.component';
 import { EditTodoComponent } from './components/edit-todo/edit-todo.component'; 
 
 /**
@@ -32,7 +31,6 @@ import {MatSelectModule} from '@angular/material/select';
     TodosComponent,
     FilterPipe,
     NewTodoComponent,
-    SeeTodoComponent,
     EditTodoComponent
   ],
   imports: [
